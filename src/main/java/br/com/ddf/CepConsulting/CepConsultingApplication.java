@@ -1,8 +1,4 @@
 package br.com.ddf.CepConsulting;
-
-import br.com.ddf.CepConsulting.model.DadosCep;
-import br.com.ddf.CepConsulting.service.ConsumoApi;
-import br.com.ddf.CepConsulting.service.ConverteDados;
 import br.com.ddf.CepConsulting.service.MenuInicial;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,10 +18,5 @@ public class CepConsultingApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		MenuInicial menuInicial = new MenuInicial();
 		menuInicial.escolheCepOuEndereco();
-
-
-		/*ArrayList<DadosCep> arrayDeEnderecos = conversor.converteEmArray(json, ArrayList.class);*/
-
-
 	}
 }

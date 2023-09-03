@@ -1,19 +1,19 @@
 package br.com.ddf.CepConsulting.service;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ServiceLoader;
 
 public class ConsumoApi {
+    FormatacaoDeUrl formataDados = new FormatacaoDeUrl();
 
     public String obterDados(String estado, String cidade, String rua) {
+        String enderecoFormatado = formataDados.formataEndereco(estado,cidade,rua);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://viacep.com.br/ws/" + estado + "/" + cidade + "/" + rua + "/json"))
+                .uri(URI.create("https://viacep.com.br/ws/" + enderecoFormatado + "/json"))
                 .build();
         HttpResponse<String> response = null;
         try {
@@ -30,9 +30,10 @@ public class ConsumoApi {
     }
 
     public String obterDados(String cep) {
+        String cepFormatado = formataDados.formataEndereco(cep);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://viacep.com.br/ws/" + cep + "/json"))
+                .uri(URI.create("https://viacep.com.br/ws/" + cepFormatado + "/json"))
                 .build();
         HttpResponse<String> response = null;
         try {
